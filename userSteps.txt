@@ -1,0 +1,4 @@
+1) Crear rol de reino USER
+2) Crear usuario con username "appuser"
+3) Asignar contraseña al usuario
+4) Asignar rol USER
