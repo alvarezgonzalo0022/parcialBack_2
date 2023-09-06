@@ -5,9 +5,7 @@ import com.msbills.service.BillService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +20,17 @@ public class BillController {
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<List<Bill>> getAll() {
         return ResponseEntity.ok().body(service.getAllBill());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Bill> getBillByID(@PathVariable("id") String id) {
+        return ResponseEntity.ok().body(service.getBillByID(id));
+    }
+
+    @PostMapping("/add")
+    @PreAuthorize("hasAnyAuthority('GROUP_PROVIDER')")
+    public ResponseEntity<Bill> createBill(@RequestBody Bill bill) {
+        return ResponseEntity.ok().body(service.createBill(bill));
     }
 
 }

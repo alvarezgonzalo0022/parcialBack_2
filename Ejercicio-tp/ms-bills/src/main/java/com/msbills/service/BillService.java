@@ -17,4 +17,16 @@ public class BillService {
         return repository.findAll();
     }
 
+    public Bill getBillByID(String id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Bill not found"));
+    }
+
+    public Bill createBill(Bill bill) {
+        try {
+            return repository.save(bill);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
