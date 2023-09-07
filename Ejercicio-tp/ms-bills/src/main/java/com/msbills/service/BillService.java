@@ -3,6 +3,7 @@ package com.msbills.service;
 import com.msbills.models.Bill;
 import com.msbills.repositories.BillRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class BillService {
         return repository.findAll();
     }
 
-    public Bill getBillByID(String id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Bill not found"));
+    public List<Bill> getBillsByID(String id) {
+        return repository.findAllByUserId(id);
     }
 
     public Bill createBill(Bill bill) {

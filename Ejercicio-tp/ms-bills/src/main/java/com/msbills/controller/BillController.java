@@ -23,12 +23,12 @@ public class BillController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Bill> getBillByID(@PathVariable("id") String id) {
-        return ResponseEntity.ok().body(service.getBillByID(id));
+    public ResponseEntity<List<Bill>> getBillsByID(@PathVariable("id") String id) {
+        return ResponseEntity.ok().body(service.getBillsByID(id));
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasAnyAuthority('GROUP_PROVIDER')")
+    @PreAuthorize("hasAnyAuthority('GROUP_PROVIDERS')")
     public ResponseEntity<Bill> createBill(@RequestBody Bill bill) {
         return ResponseEntity.ok().body(service.createBill(bill));
     }

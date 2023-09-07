@@ -28,6 +28,7 @@ public class KeyCloakJwtAuthenticationConverter implements Converter<Jwt, Abstra
     resourcesRoles.addAll(extractRoles("resource_access", objectMapper.readTree(objectMapper.writeValueAsString(jwt)).get("claims")));
     resourcesRoles.addAll(extractRolesRealmAccess("realm_access", objectMapper.readTree(objectMapper.writeValueAsString(jwt)).get("claims")));
     resourcesRoles.addAll(extractAud("aud", objectMapper.readTree(objectMapper.writeValueAsString(jwt)).get("claims")));
+    resourcesRoles.addAll(extractGroups("groups", objectMapper.readTree(objectMapper.writeValueAsString(jwt)).get("claims")));
     return resourcesRoles;
   }
 
@@ -72,6 +73,19 @@ public class KeyCloakJwtAuthenticationConverter implements Converter<Jwt, Abstra
     return authorityList;
   }
 
+
+  private static List<GrantedAuthority> extractGroups(String route, JsonNode jwt) {
+    Set<String> rolesWithPrefix = new HashSet<>();
+
+    jwt.path(route)
+            .elements()
+            .forEachRemaining(e ->rolesWithPrefix.add("GROUP_" + e.asText()));
+
+    final List<GrantedAuthority> authorityList =
+            AuthorityUtils.createAuthorityList(rolesWithPrefix.toArray(new String[0]));
+
+    return authorityList;
+  }
 
 
   public KeyCloakJwtAuthenticationConverter() {
