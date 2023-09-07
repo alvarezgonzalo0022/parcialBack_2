@@ -73,6 +73,7 @@ public class KeyCloakJwtAuthenticationConverter implements Converter<Jwt, Abstra
     return authorityList;
   }
 
+
   public KeyCloakJwtAuthenticationConverter() {
   }
 

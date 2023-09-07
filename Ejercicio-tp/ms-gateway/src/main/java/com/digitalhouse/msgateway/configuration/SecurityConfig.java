@@ -17,8 +17,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain (ServerHttpSecurity http) {
-
-
         http
                 .authorizeExchange()
                 .anyExchange()
@@ -28,8 +26,6 @@ public class SecurityConfig {
                 .and()
                 .logout()
                 .logoutSuccessHandler(oidcServerLogoutSuccessHandler());
-
-
         return http.build();
     }
 
@@ -40,5 +36,3 @@ public class SecurityConfig {
         return oidcClientInitiatedLogoutSuccessHandler;
     }
 }
-
-
