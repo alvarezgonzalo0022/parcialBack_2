@@ -1,4 +1,4 @@
-package com.msbills.security;
+package com.example.msusers.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

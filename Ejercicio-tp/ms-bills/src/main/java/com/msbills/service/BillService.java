@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,8 +19,24 @@ public class BillService {
         return repository.findAll();
     }
 
-    public List<Bill> getBillsByID(String id) {
-        return repository.findAllByUserId(id);
+    public Bill getBillByID(String id) {
+        Optional<Bill> bill = repository.findById(id);
+
+        if (bill.isPresent()) {
+            return bill.get();
+        } else {
+            throw new RuntimeException("Bill not found");
+        }
+    }
+
+    public List<Bill> getBillsByUserID(String id) {
+        try {
+            List<Bill> bills = repository.findAllBycustomerBill(id);
+            return bills;
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Bill createBill(Bill bill) {

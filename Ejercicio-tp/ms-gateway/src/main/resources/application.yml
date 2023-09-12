@@ -25,6 +25,12 @@ spring:
             - Path=/api/v1/**
           filters:
             - StripPrefix=2
+        - id: ms-users
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v2/**
+          filters:
+            - StripPrefix=2
   security:
     oauth2:
       client:

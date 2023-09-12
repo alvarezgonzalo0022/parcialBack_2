@@ -23,8 +23,13 @@ public class BillController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<Bill>> getBillsByID(@PathVariable("id") String id) {
-        return ResponseEntity.ok().body(service.getBillsByID(id));
+    public ResponseEntity<Bill> getBillByID(@PathVariable("id") String id) {
+        return ResponseEntity.ok().body(service.getBillByID(id));
+    }
+
+    @GetMapping("/customer/{id}")
+    public ResponseEntity<List<Bill>> getBillsByUserID(@PathVariable("id") String id) {
+        return ResponseEntity.ok().body(service.getBillsByUserID(id));
     }
 
     @PostMapping("/add")
