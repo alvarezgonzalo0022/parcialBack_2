@@ -13,6 +13,6 @@ import java.util.List;
 @FeignClient(name= "ms-bill", configuration = FeignInterceptor.class)
 public interface FeignBillRepository {
 
-    @RequestMapping(method = RequestMethod.GET,value = "/bills/customer/{id}")
+    @RequestMapping(method = RequestMethod.GET,value = "/customer/{id}")
     ResponseEntity<List<Bill>> findByUserId(@PathVariable("id") String id);
 }

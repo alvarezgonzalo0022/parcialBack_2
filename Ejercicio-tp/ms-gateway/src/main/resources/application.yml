@@ -22,15 +22,15 @@ spring:
         - id: ms-bill
           uri: lb://ms-bill
           predicates:
-            - Path=/api/v1/**
+            - Path=/api/v1/bills/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=3
         - id: ms-users
           uri: http://localhost:8081
           predicates:
-            - Path=/api/v2/**
+            - Path=/api/v1/users/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=3
   security:
     oauth2:
       client:
