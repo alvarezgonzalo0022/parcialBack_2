@@ -1,4 +1,6 @@
 1) Crear rol de reino USER
-2) Crear usuario con username "appuser"
-3) Asignar contraseña al usuario
-4) Asignar rol USER
+2) Crear grupo PROVIDERS
+3) Crear usuario con username "appuser"
+4) Asignar contraseña al usuario
+5) Asignar rol USER
+6) Asignar grupo PROVIDERS
